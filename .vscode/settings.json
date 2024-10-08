@@ -1,0 +1,4 @@
+{
+    "editor.defaultFormatter": "rubocop.vscode-rubocop",
+    "editor.formatOnSave": true
+}
