@@ -1,16 +1,18 @@
 class IdeasController < ApplicationController
   def index
-    @ideas=Idea.all
+    # @ideas=Idea.all
+    @pagy, @ideas=pagy(Idea.order("created_at DESC"))
+    # @pagy, @idea=pagy(Idea.all)
   end
   def create
     # @idea=Idea.create(description: params[:idea][:description], author: params[:idea][:author])
     @idea=Idea.new(idea_params)
-    if @idea.valid?
-        @idea.save
-        redirect_to root_path
-    else
+    @idea.save
+    # if @idea.valid?
+    #     redirect_to root_path
+    # else
 
-    end
+    # end
     redirect_to root_path
   end
   # def new
@@ -21,8 +23,8 @@ class IdeasController < ApplicationController
   end
   def update
     @idea=Idea.find(params[:id])
+    redirect_to root_path
     if @idea.update(idea_params)
-      redirect_to root_path
     else
       redirect_to edit_idea_path(params[:id])
     end

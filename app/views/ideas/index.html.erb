@@ -1,7 +1,6 @@
-<div class="max-w-screen-xl mx-auto my-auto bg-pink-300">
   <% @ideas.each do |idea| %>
-    <div class="rounded overflow-hidden shadow-lg  ">
-      <div class="px-6 py-8 h-full ">
+    <div class="rounded-lg overflow-hidden shadow-lg flex p-1 justify-center flex-col items-center ">
+      <div class="px-6 py-8 h-full text-center ">
         <div class="font-bold text-xl mb-2"><%= idea.description %></div>
         <p class="text-sm text-gray-700 "><%= idea.author %></p>
       </div>
@@ -15,4 +14,7 @@
       </div>
     </div>
   <% end %>
+  <div class="mt-5 flex justify-center">
+  <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
 </div>
+  

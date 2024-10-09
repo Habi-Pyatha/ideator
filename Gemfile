@@ -59,3 +59,5 @@ end
 gem "tailwindcss-rails", "~> 2.7"
 
 gem "simple_form", "~>5.3"
+
+gem "pagy", "~>6.2"
