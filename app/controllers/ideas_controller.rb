@@ -7,12 +7,12 @@ class IdeasController < ApplicationController
   def create
     # @idea=Idea.create(description: params[:idea][:description], author: params[:idea][:author])
     @idea=Idea.new(idea_params)
-    @idea.save
-    # if @idea.valid?
-    #     redirect_to root_path
-    # else
-
-    # end
+    if @idea.valid?
+      @idea.save
+        flash[:success]="Your idea has been posted!"
+    else
+        flash[:alert]="Woops! Look like there has been an error!"
+    end
     redirect_to root_path
   end
   # def new
@@ -23,9 +23,11 @@ class IdeasController < ApplicationController
   end
   def update
     @idea=Idea.find(params[:id])
-    redirect_to root_path
     if @idea.update(idea_params)
+      flash[:success]="The idea has been updated"
+      redirect_to root_path
     else
+      flash[:alert]="Woops! Look like there has been an error"
       redirect_to edit_idea_path(params[:id])
     end
   end
@@ -33,6 +35,7 @@ class IdeasController < ApplicationController
   def destroy
     @idea=Idea.find(params[:id])
     @idea.destroy
+    flash[:sucess]="The idea was sucessfully deleted!"
     redirect_to root_path
   end
 
